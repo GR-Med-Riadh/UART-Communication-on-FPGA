@@ -1,25 +1,82 @@
-# FPGA UART Communication Project
+Très bien, tu veux un **README.md** stylé et clair pour ton projet UART. Voilà une version professionnelle mais simple à lire (et prête à coller sur GitHub) :
 
-A modular FPGA-based implementation of UART (Universal Asynchronous Receiver/Transmitter) for serial communication.**
+---
 
-##📌 Overview
+# 🛰️ UART Communication - VHDL Mini Project
 
-This project implements a **UART communication protocol** on an FPGA, enabling serial data transmission and reception between digital devices. UART is widely used due to its simplicity, low cost, and flexibility in embedded systems.
+## 📘 Overview
 
-### Key Features
-- **Asynchronous Communication**: No shared clock required between devices.
-- **Modular Design**: Separate modules for clock division, transmission, reception, and debugging.
-- **Configurable Baud Rate**: Supports standard baud rates (e.g., 9600, 115200).
-- **Error Detection**: Includes parity and framing error checks.
-- **Debugging Support**: Uses Vivado's **System ILA** for real-time signal monitoring.
+This project implements a **Universal Asynchronous Receiver-Transmitter (UART)** in **VHDL**.
+It includes both the **transmitter (TX)** and **receiver (RX)** modules, along with a **testbench** for functional simulation.
+The design allows data transmission through a serial interface with configurable **baud rate**, **clock frequency**, and **parity control**.
 
-## 📊 UART Protocol Overview
+## ⚙️ Features
 
-### Data Frame Format
-Each UART transmission is organized into a **frame** with the following components:
+* Fully synthesizable UART design in VHDL
+* Configurable parameters:
 
-1. Start Bit (1 bit): Logic `0`, signaling the start of transmission.
-2. Data Bits (5–9 bits): Typically 8 bits, transmitted LSB first.
-3. Parity Bit (1 bit, optional): For error detection (even, odd, or none).
-4. Stop Bit(s) (1–2 bits): Logic `1`, marking the end of the frame.
+  * `CLK_FREQ` : System clock frequency
+  * `BAUD_RATE` : Transmission speed
+  * `PARITY_BIT` : `"none"`, `"even"`, or `"odd"`
+* Supports **8-bit data** frames
+* Detects **frame** and **parity errors**
+* Includes a **loopback testbench** for simulation
 
+## 🧠 Architecture
+
+```
++------------------------+
+|        UART.vhd        |
+|------------------------|
+|  TX Module  | RX Module|
++------------------------+
+
++------------------------+
+|       UART_TB.vhd      |
+|------------------------|
+|  Generates CLK, RST    |
+|  Sends data via TX     |
+|  Receives via RX       |
+|  Displays simulation   |
++------------------------+
+```
+
+## 🧪 Simulation
+
+* The **testbench** sends ASCII characters through the UART transmitter and verifies correct reception via the receiver.
+* You can observe signals such as `UART_TXD`, `UART_RXD`, `DIN`, and `DOUT` in your simulation tool (ModelSim, GHDL, Vivado, etc.).
+
+## 🔁 Loopback Mode
+
+To test full-duplex communication, the testbench connects:
+
+```
+UART_TXD => UART_RXD
+```
+
+This allows the transmitted data to be received internally for verification.
+
+## 🚀 Getting Started
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/<your-username>/uart-vhdl.git
+   cd uart-vhdl
+   ```
+2. Open your VHDL simulation tool.
+3. Compile:
+
+   * `UART.vhd`
+   * `UART_TB.vhd`
+4. Run the simulation and observe signals on the waveform.
+
+## 📡 Example Configuration
+
+```vhdl
+generic map (
+    CLK_FREQ   => 50_000_000,
+    BAUD_RATE  => 115200,
+    PARITY_BIT => "none"
+)
+```
