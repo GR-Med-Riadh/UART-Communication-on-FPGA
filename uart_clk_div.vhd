@@ -50,5 +50,4 @@ begin
             DIV_MARK <= ENABLE and clk_div_cnt_mark;
         end if;
     end process;
-
 end architecture;
