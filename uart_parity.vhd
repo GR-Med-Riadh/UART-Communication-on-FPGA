@@ -52,5 +52,4 @@ begin
     space_parity_g : if (PARITY_TYPE = "space") generate
         PARITY_OUT <= '0';
     end generate;
-
 end architecture;
