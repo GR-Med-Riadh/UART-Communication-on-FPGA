@@ -66,5 +66,4 @@ begin
             end if;
         end if;
     end process;
-
 end architecture;
