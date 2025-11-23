@@ -5,7 +5,7 @@ use IEEE.MATH_REAL.ALL;
 
 entity UART_CLK_DIV is
     Generic (
-        DIV_MAX_VAL  : integer := 16;
+        DIV_MAX_VAL  : integer := 434;
         DIV_MARK_POS : integer := 1
     );
     Port (
