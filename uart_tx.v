@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 module UART_TX #(
-    parameter CLK_DIV_VAL = 16,
+    parameter CLK_DIV_VAL = 434,
     parameter PARITY_BIT  = "none"  // "none", "even", "odd", "mark", "space"
 )(
     input  wire CLK,          // system clock
@@ -169,3 +169,4 @@ module UART_TX #(
     end
 
 endmodule
+
