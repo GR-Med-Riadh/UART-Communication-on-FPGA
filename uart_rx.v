@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 module UART_RX #(
-    parameter CLK_DIV_VAL = 16,
+    parameter CLK_DIV_VAL = 434,
     parameter PARITY_BIT  = "none"  // "none", "even", "odd", "mark", "space"
 )(
     input  wire CLK,          // system clock
@@ -156,5 +156,6 @@ module UART_RX #(
             PARITY_ERROR <= rx_done && rx_parity_error;
         end
     end
+
 
 endmodule
