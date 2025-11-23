@@ -4,7 +4,7 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity UART_TX is
     Generic (
-        CLK_DIV_VAL : integer := 16;
+        CLK_DIV_VAL : integer := 434;
         PARITY_BIT  : string  := "none" -- type of parity: "none", "even", "odd", "mark", "space"
     );
     Port (
