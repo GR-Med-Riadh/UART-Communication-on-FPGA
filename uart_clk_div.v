@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 module UART_CLK_DIV #(
-    parameter DIV_MAX_VAL  = 16,
+    parameter DIV_MAX_VAL  = 434,
     parameter DIV_MARK_POS = 1
 )(
     input  wire CLK,       // system clock
